@@ -63,4 +63,6 @@ fs.readdirSync(srcDir).forEach((file) => {
   fs.copyFileSync(path.join(srcDir, file), path.join(appName, `src/${file}`));
 });
 
+runCommand(`cd ${appName} && rm src/App.css`);
+
 log(chalk.green('All done! 🎉 ') + 'You can ' + chalk.blue('cd ') + 'into ' + chalk.blue(`${appName} `) + 'and start coding ' + chalk.red('now 👨🏽‍💻'));
