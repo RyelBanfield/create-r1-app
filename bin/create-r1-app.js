@@ -5,6 +5,7 @@ import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import chalk from 'chalk';
 
 const runCommand = (command) => {
   try {
@@ -16,7 +17,9 @@ const runCommand = (command) => {
   return true;
 };
 
-console.log('Rocket is ready to launch 🚀');
+const log = console.log;
+
+log(chalk.red('Rocket is ready to launch 🚀'));
 
 const appName = process.argv[2];
 const createProjectCommand = `npm create vite@latest ${appName} -- --template react-ts`;
@@ -39,10 +42,10 @@ const devDependencies = [
 ];
 
 runCommand(createProjectCommand);
-console.log('Actually, I\'ll install those deps for you. 😉');
-console.log(' ');
+log('Actually, I\'ll install those deps for you 😉');
+log(' ');
 runCommand(`cd ${appName} && npm install ${devDependencies.join(' ')} --save-dev`);
-console.log(' ');
+log(' ');
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -60,4 +63,4 @@ fs.readdirSync(srcDir).forEach((file) => {
   fs.copyFileSync(path.join(srcDir, file), path.join(appName, `src/${file}`));
 });
 
-console.log(`All done! 🎉 You can cd into ${appName} and start coding now. 👨🏽‍💻`);
+log(chalk.green('All done! 🎉 ') + 'You can ' + chalk.blue('cd ') + 'into ' + chalk.blue(`${appName} `) + 'and start coding ' + chalk.red('now 👨🏽‍💻'));

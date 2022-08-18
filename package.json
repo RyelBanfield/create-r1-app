@@ -1,7 +1,7 @@
 {
 	"name": "create-r1-app",
 	"version": "1.0.0",
-	"description": "A React Stater using Vite, TypeScript, ESLint & TailwindCSS.",
+	"description": "The fastest way to start a React project using Vite, TypeScript, ESLint & TailwindCSS.",
 	"bin": {
 		"create-r1-app": "./bin/create-r1-app.js"
 	},
@@ -30,5 +30,8 @@
 		"eslint": "^8.22.0",
 		"eslint-config-airbnb-base": "^15.0.0",
 		"eslint-plugin-import": "^2.26.0"
+	},
+	"dependencies": {
+		"chalk": "^5.0.1"
 	}
 }

@@ -1,6 +1,6 @@
 # create-r1-app
 
-A quick way to start a new React app, using Vite, TypeScript, ESLint & TailwindCSS.
+The fastest way to start a React project using Vite, TypeScript, ESLint & TailwindCSS.
 
 ## How To Run
 
