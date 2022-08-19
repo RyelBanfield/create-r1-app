@@ -24,27 +24,24 @@ module.exports = {
   ],
   rules: {
     'react/react-in-jsx-scope': 'off',
-    'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.tsx'] }],
     'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
   },
   overrides: [
     {
-      files: ['**/*.js', '**/*.ts', '**/*.tsx'],
+      files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
       rules: {
         'simple-import-sort/imports': [
           'error',
           {
             groups: [
-              // `react` first, `next` second, then packages starting with a character
-              ['^react$', '^next', '^next/$', '^[a-z]'],
+              // `react` first, then packages starting with a character
+              ['^react$', '^[a-z]'],
               // Packages starting with `@`
               ['^@'],
               // Packages starting with `~`
               ['^~'],
-              // // Imports starting with `../`
-              // ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
               // Packages starting with `@/`
               ['^@/'],
               // Imports starting with `./`
