@@ -1,29 +1,27 @@
 #! /usr/bin/env node
-/* eslint-disable no-underscore-dangle */
 
+import chalk from 'chalk';
 import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import chalk from 'chalk';
+
+const { log, error } = console;
 
 const runCommand = (command) => {
   try {
     execSync(`${command}`, { stdio: 'inherit' });
-  } catch (error) {
-    console.error(`Failed to execute ${command}`, error);
+  } catch (err) {
+    error(`Failed to execute ${command}`, err);
     return false;
   }
   return true;
 };
 
-const log = console.log;
-
 log(chalk.red('Rocket is ready to launch 🚀'));
 
 const appName = process.argv[2];
 const createProjectCommand = `npm create vite@latest ${appName} -- --template react-ts`;
-
 const devDependencies = [
   '@rollup/plugin-eslint',
   '@typescript-eslint/parser',
@@ -48,16 +46,13 @@ runCommand(`cd ${appName} && npm install ${devDependencies.join(' ')} --save-dev
 log(' ');
 
 const __filename = fileURLToPath(import.meta.url);
-
 const __dirname = path.dirname(__filename);
-
 const rootDir = path.join(__dirname, '../root-files');
+const srcDir = path.join(__dirname, '../src-files');
 
 fs.readdirSync(rootDir).forEach((file) => {
   fs.copyFileSync(path.join(rootDir, file), path.join(appName, file));
 });
-
-const srcDir = path.join(__dirname, '../src-files');
 
 fs.readdirSync(srcDir).forEach((file) => {
   fs.copyFileSync(path.join(srcDir, file), path.join(appName, `src/${file}`));
@@ -65,4 +60,4 @@ fs.readdirSync(srcDir).forEach((file) => {
 
 runCommand(`cd ${appName} && rm src/App.css`);
 
-log(chalk.green('All done! 🎉 ') + 'You can ' + chalk.blue('cd ') + 'into ' + chalk.blue(`${appName} `) + 'and start coding ' + chalk.red('now 👨🏽‍💻'));
+log(`${chalk.green('All done! 🎉 ')}You can ${chalk.blue('cd ')}into ${chalk.blue(`${appName} `)}and start coding ${chalk.red('now 👨🏽‍💻')}`);
