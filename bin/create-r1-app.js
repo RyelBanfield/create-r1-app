@@ -37,6 +37,8 @@ const devDependencies = [
   'eslint-plugin-simple-import-sort',
   'postcss',
   'tailwindcss',
+  'prettier',
+  'prettier-plugin-tailwindcss',
 ];
 
 runCommand(createProjectCommand);
