@@ -1,6 +1,6 @@
 {
 	"name": "create-r1-app",
-	"version": "1.0.10",
+	"version": "1.0.11",
 	"description": "The fastest way to start a React project using Vite, TypeScript, ESLint & TailwindCSS.",
 	"bin": {
 		"create-r1-app": "./bin/create-r1-app.js"
